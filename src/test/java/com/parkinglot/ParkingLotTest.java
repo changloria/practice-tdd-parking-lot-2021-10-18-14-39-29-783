@@ -66,8 +66,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    //validateTicket = valid, isParkedCar = true, countTicket =1
-    //should return correct car while there are two cars
+    //should return correct car while there are two parked cars + two corresponding tickets
     void should_correct_car_when_take_car_given_two_parked_cars() {
         //given
         ParkingLot parkingLot = new ParkingLot();
@@ -81,5 +80,20 @@ public class ParkingLotTest {
         //then
         assertEquals(car1, takeCar1);
         assertEquals(car2, takeCar2);
+    }
+
+    @Test
+    void should_throw_no_available_position_when_park_car_given_parking_lot_full_and_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.parkCar(new Car());  //Parked one car, now no more parking lots available.
+
+        Car car = new Car();
+        //when
+        NoAvailablePositionException noAvailablePositionException = assertThrows(NoAvailablePositionException.class, () -> {
+            parkingLot.parkCar(car);
+        });
+        //then
+        assertEquals("No available position", noAvailablePositionException.getMessage());
     }
 }
