@@ -10,6 +10,10 @@ public class ParkingBoy {
     this.parkingLots = parkingLots;
     }
 
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
     public void assignParkingLot(ParkingLot parkingLot) {
         this.parkingLots.add(parkingLot);
     }
