@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SuperSmartParkingBoyTest {
@@ -30,9 +31,17 @@ public class SuperSmartParkingBoyTest {
     @Test
     void should_park_second_parking_lot_when_park_car_given_super_smart_parking_boy_two_parking_lots_second_more_empty() {
         //given
-
+        ParkingLot parkingLot1 = new ParkingLot(4);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        Car car = new Car();
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
         //when
-
+        smartParkingBoy.parkCar(car);
         //then
+        assertTrue(parkingLot2.ticketCarHashMap.containsValue(car));
+        assertFalse(parkingLot1.ticketCarHashMap.containsValue(car));
     }
 }
