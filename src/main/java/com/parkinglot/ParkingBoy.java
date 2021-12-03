@@ -18,7 +18,7 @@ public class ParkingBoy {
         return parkingLots.stream()
                 .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
                 .findFirst()
-                .get()
+                .orElseThrow(NoAvailablePositionException::new)
                 .parkCar(car);
     }
 

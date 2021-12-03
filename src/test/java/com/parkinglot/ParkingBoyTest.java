@@ -15,6 +15,7 @@ public class ParkingBoyTest {
         //given
         ParkingLot parkingLot = new ParkingLot();
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         //when
         Ticket ticket = parkingBoy.parkCar(new Car());
