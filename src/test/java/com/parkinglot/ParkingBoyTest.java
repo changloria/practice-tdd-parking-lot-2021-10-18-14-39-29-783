@@ -53,6 +53,6 @@ public class ParkingBoyTest {
         //then
         assertNotNull(ticket);
         assertEquals(0, parkingLot1.getAvailablePosition());
-        assertEquals(9, parkingLot1.getAvailablePosition());
+        assertEquals(9, parkingLot2.getAvailablePosition());
     }
 }
