@@ -1,11 +1,13 @@
 package com.parkinglot;
 
 public class ParkingBoy {
-    public ParkingBoy(ParkingLot parkingLot){
+    private final ParkingLot parkingLot;
 
+    public ParkingBoy(ParkingLot parkingLot){
+    this.parkingLot = parkingLot;
     }
 
     public Ticket parkCar(Car car){
-        return null;
+        return parkingLot.parkCar(car);
     }
 }

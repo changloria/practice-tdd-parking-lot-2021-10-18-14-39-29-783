@@ -15,4 +15,13 @@ public class ParkingBoyTest {
         //then
         assertNotNull(ticket);
     }
+
+    @Test
+    void should_when_given_() {
+        //given
+
+        //when
+
+        //then
+    }
 }
