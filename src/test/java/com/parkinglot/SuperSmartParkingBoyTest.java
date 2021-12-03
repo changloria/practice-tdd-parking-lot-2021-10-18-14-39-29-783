@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SuperSmartParkingBoyTest {
     //Case 1: Given a super smart parking boy, who manage two parking lots, both with same available
@@ -43,5 +43,31 @@ public class SuperSmartParkingBoyTest {
         //then
         assertTrue(parkingLot2.ticketCarHashMap.containsValue(car));
         assertFalse(parkingLot1.ticketCarHashMap.containsValue(car));
+    }
+
+    //Case 3: Given a super smart parking boy, who manage two parking lots, both with a parked car,
+    //and two parking ticket, When fetch the car twice, Then return the right car with each ticket
+    @Test
+    void should_return_right_car_when_take_car_twice_given_super_smart_parking_boy_two_parking_lots_one_parked_car_two_ticket() {
+        //given
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot1 = new ParkingLot(8);
+        ParkingLot parkingLot2 = new ParkingLot(9);
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+
+        Ticket ticket1 = smartParkingBoy.parkCar(car1);
+        Ticket ticket2 = smartParkingBoy.parkCar(car2);
+
+        //when
+        Car actualCar1 = smartParkingBoy.takeCar(ticket1);
+        Car actualCar2 = smartParkingBoy.takeCar(ticket2);
+
+        //then
+        assertEquals(car1, actualCar1);
+        assertEquals(car2, actualCar2);
     }
 }
