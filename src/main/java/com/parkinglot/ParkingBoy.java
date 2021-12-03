@@ -10,11 +10,23 @@ public class ParkingBoy {
     this.parkingLots = parkingLots;
     }
 
+    public void assignParkingLot(ParkingLot parkingLot) {
+        this.parkingLots.add(parkingLot);
+    }
+
     public Ticket parkCar(Car car){
         return parkingLots.stream()
                 .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
                 .findFirst()
                 .get()
                 .parkCar(car);
+    }
+
+    public Car takeCar(Ticket ticket) {
+        return parkingLots.stream()
+                .filter(parkingLot -> parkingLot.ticketCarHashMap.containsKey(ticket))
+                .findFirst()
+                .orElseThrow(UnrecognizedParkingTicketException::new)
+                .takeCar(ticket);
     }
 }

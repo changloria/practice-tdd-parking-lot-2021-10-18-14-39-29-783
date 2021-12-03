@@ -50,7 +50,7 @@ public class ParkingLotTest {
 
         UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, () -> {parkingLot.takeCar(ticket2);});
         //then
-        assertEquals("Unrecognized Parking Ticket.", unrecognizedParkingTicketException.getMessage());
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class ParkingLotTest {
         //when
         UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, () -> {parkingLot.takeCar(ticket1);});
         //then
-        assertEquals("Unrecognized Parking Ticket.", unrecognizedParkingTicketException.getMessage());
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
 
     @Test
