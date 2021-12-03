@@ -72,7 +72,7 @@ public class SmartParkingBoyTest {
         assertEquals(car2, actualCar2);
     }
 
-    //Case 5: Given a smart parking boy, who manage two parking lots, and an unrecognized ticket,
+    //Case 4: Given a smart parking boy, who manage two parking lots, and an unrecognized ticket,
     //When fetch the car, Then return nothing with error message "Unrecognized parking ticket.
     @Test
     void should_throw_unrecognized_parking_ticket_exception_when_take_car_given_smart_parking_boy_two_parking_lots_and_wrong_ticket() {
@@ -90,4 +90,25 @@ public class SmartParkingBoyTest {
         UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, () -> smartParkingBoy.takeCar(ticket));
         assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
     }
+
+    //Case 5: Given a smart parking boy, who manage two parking lots, and a used ticket, When fetch
+    //the car, Then return nothing with error message "Unrecognized parking ticket.
+    @Test
+    void should_throw_unrecognized_parking_ticket_exception_when_take_car_given_smart_parking_boy_two_parking_lots_and_used_ticket() {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        Car car = new Car();
+        //when
+        Ticket ticket = smartParkingBoy.parkCar(car);
+        smartParkingBoy.takeCar(ticket);
+        //then
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, () -> smartParkingBoy.takeCar(ticket));
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
+    }
+
 }
