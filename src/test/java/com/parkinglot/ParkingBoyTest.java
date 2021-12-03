@@ -82,6 +82,7 @@ public class ParkingBoyTest {
         assertEquals(expectedCar2, actualCar2);
     }
 
+    //Case 5
     @Test
     void should_throw_unrecognized_parking_ticket_when_take_car_given_parking_boy_manage_two_parking_lots_and_unrecognized_ticket() {
         //given
@@ -96,11 +97,31 @@ public class ParkingBoyTest {
         parkingBoy.assignParkingLot(parkingLot2);
         parkingBoy.parkCar(car);
 
-        Ticket wrongTicket = new Ticket();
-
         //when
+        Ticket wrongTicket = new Ticket();
         //then
         UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, () -> parkingBoy.takeCar(wrongTicket));
         assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
+    }
+    //Case 6
+    @Test
+    void should_throw_unrecognized_parking_ticket_when_take_car_given_parking_boy_manage_two_parking_lots_and_unused_ticket() {
+        //given
+        Car car = new Car();
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+
+        Ticket ticket = parkingBoy.parkCar(new Car());
+        //when
+        parkingBoy.takeCar(ticket);
+
+        //then
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, () -> parkingBoy.takeCar(ticket));
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getMessage());
+
     }
 }
