@@ -40,29 +40,30 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_take_car_given_wrong_ticket() {
+    //Unrecognized parking ticket when take car given ParkingLot not full + wrong ticket
+    void should_throw_unrecognized_parking_ticket_when_take_car_given_wrong_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Ticket ticket1 = parkingLot.parkCar(new Car());
         //when
         Ticket ticket2 = new Ticket();
-        Car car = parkingLot.takeCar(ticket2);
+
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, () -> {parkingLot.takeCar(ticket2);});
         //then
-        assertNull(car);
+        assertEquals("Unrecognized Parking Ticket.", unrecognizedParkingTicketException.getMessage());
     }
 
     @Test
-    void should_return_null_when_take_car_given_used_ticket() {
+    void should_throw_unrecognized_parking_ticket_when_take_car_given_used_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Ticket ticket1 = parkingLot.parkCar(new Car());
         Car car1 = parkingLot.takeCar(ticket1);
 
         //when
-        Car car2 = parkingLot.takeCar(ticket1);
-
+        UnrecognizedParkingTicketException unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicketException.class, () -> {parkingLot.takeCar(ticket1);});
         //then
-        assertNull(car2);
+        assertEquals("Unrecognized Parking Ticket.", unrecognizedParkingTicketException.getMessage());
     }
 
     @Test

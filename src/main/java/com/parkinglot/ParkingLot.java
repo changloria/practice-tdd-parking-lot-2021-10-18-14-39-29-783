@@ -21,7 +21,7 @@ public class ParkingLot {
             ticketCarHashMap.put(ticket, car);
             return ticket;
         }
-        return null;
+        throw new NoAvailablePositionException("No available position.");
     }
 
     private Boolean isParkingLotFull() {
@@ -29,7 +29,10 @@ public class ParkingLot {
     }
 
     public Car takeCar(Ticket ticket) {
+        if(ticketCarHashMap.containsKey(ticket)){
             return ticketCarHashMap.remove(ticket);
-
+        }else{
+            throw new UnrecognizedParkingTicketException("Unrecognized Parking Ticket.");
+        }
     }
 }
