@@ -16,8 +16,15 @@ public class ParkingLot {
     }
 
     public Ticket parkCar(Car car) {
-        Ticket ticket = new Ticket();
-        ticketCarHashMap.put(ticket, car);
-        return ticket;
+        if (!isParkingLotFull()) {
+            Ticket ticket = new Ticket();
+            ticketCarHashMap.put(ticket, car);
+            return ticket;
+        }
+        return null;
+    }
+
+    private Boolean isParkingLotFull(){
+        return ticketCarHashMap.size()>=capacity;
     }
 }

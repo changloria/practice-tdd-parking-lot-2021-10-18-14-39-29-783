@@ -19,7 +19,7 @@ public class ParkingLotTest {
     @Test
     void should_return_null_when_park_car_given_parking_lot_full_and_car() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(0);
         Car car = new Car();
         //when
         Ticket ticket = parkingLot.parkCar(car);
