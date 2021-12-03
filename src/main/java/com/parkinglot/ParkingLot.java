@@ -9,6 +9,9 @@ public class ParkingLot {
     }
 
     public Ticket parkCar(Car car) {
-        return null;
+        HashMap<Ticket, Car> ticketCarHashMap = new HashMap<>();
+        Ticket ticket = new Ticket();
+        ticketCarHashMap.put(ticket, car);
+        return ticket;
     }
 }
