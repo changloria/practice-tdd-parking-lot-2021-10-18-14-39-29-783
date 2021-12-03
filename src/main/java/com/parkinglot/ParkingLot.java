@@ -7,11 +7,11 @@ public class ParkingLot {
     HashMap<Ticket, Car> ticketCarHashMap = new HashMap<>();
     private int capacity;
 
-    public ParkingLot(int capacity){
+    public ParkingLot(int capacity) {
         this.capacity = capacity;
     }
 
-    public ParkingLot(){
+    public ParkingLot() {
         this.capacity = DEFAULT_CAPACITY;
     }
 
@@ -24,11 +24,16 @@ public class ParkingLot {
         return null;
     }
 
-    private Boolean isParkingLotFull(){
-        return ticketCarHashMap.size()>=capacity;
+    private Boolean isParkingLotFull() {
+        return ticketCarHashMap.size() >= capacity;
     }
 
     public Car takeCar(Ticket ticket) {
+        if (ticketCarHashMap.containsKey(ticket)) {
+            Car car = ticketCarHashMap.get(ticket);
+            ticketCarHashMap.remove(ticket);
+            return car;
+        }
         return null;
     }
 }
