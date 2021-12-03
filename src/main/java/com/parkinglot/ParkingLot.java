@@ -29,11 +29,7 @@ public class ParkingLot {
     }
 
     public Car takeCar(Ticket ticket) {
-        if (ticketCarHashMap.containsKey(ticket)) {
-            Car car = ticketCarHashMap.get(ticket);
-            ticketCarHashMap.remove(ticket);
-            return car;
-        }
-        return null;
+            return ticketCarHashMap.remove(ticket);
+
     }
 }
