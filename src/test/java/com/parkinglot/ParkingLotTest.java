@@ -56,12 +56,30 @@ public class ParkingLotTest {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Ticket ticket1 = parkingLot.parkCar(new Car());
-        Car pickCar1= parkingLot.takeCar(ticket1);
+        Car car1 = parkingLot.takeCar(ticket1);
 
         //when
-        Car pickCar2= parkingLot.takeCar(ticket1);
+        Car car2 = parkingLot.takeCar(ticket1);
 
         //then
-        assertNull(pickCar2);
+        assertNull(car2);
+    }
+
+    @Test
+    //validateTicket = valid, isParkedCar = true, countTicket =1
+    //should return correct car while there are two cars
+    void should_correct_car_when_take_car_given_two_parked_cars() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Ticket ticket1 = parkingLot.parkCar(car1);
+        Ticket ticket2 = parkingLot.parkCar(car2);
+        //when
+        Car takeCar1 = parkingLot.takeCar(ticket1);
+        Car takeCar2 = parkingLot.takeCar(ticket2);
+        //then
+        assertEquals(car1, takeCar1);
+        assertEquals(car2, takeCar2);
     }
 }
