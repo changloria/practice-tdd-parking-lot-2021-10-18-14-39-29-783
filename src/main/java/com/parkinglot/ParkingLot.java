@@ -36,15 +36,13 @@ public class ParkingLot {
         }
     }
 
-    private boolean hasAvailablePosition() {
-        return ticketCarHashMap.size() < capacity;
-    }
 
-    public int getAvailablePosition() {
+    public int getAvailablePositionCount() {
         return capacity - ticketCarHashMap.size();
     }
 
+    //check if capacity = 0 add an exception for this
     public double getAvailabilityRate() {
-        return (double) getAvailablePosition() / capacity;
+        return (double) getAvailablePositionCount() / capacity;
     }
 }

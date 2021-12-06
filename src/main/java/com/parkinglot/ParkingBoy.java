@@ -20,12 +20,13 @@ public class ParkingBoy {
 
     public Ticket parkCar(Car car){
         return parkingLots.stream()
-                .filter(parkingLot -> parkingLot.getAvailablePosition() > 0)
+                .filter(parkingLot -> parkingLot.getAvailablePositionCount() > 0)
                 .findFirst()
                 .orElseThrow(NoAvailablePositionException::new)
                 .parkCar(car);
     }
 
+    //if there is var, .orElseThrow(()-> new NoAvailableException(NO_AVAILABLE_POSITION))
     public Car takeCar(Ticket ticket) {
         return parkingLots.stream()
                 .filter(parkingLot -> parkingLot.ticketCarHashMap.containsKey(ticket))

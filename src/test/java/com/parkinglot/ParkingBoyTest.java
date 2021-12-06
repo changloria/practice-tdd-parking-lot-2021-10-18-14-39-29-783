@@ -36,8 +36,8 @@ public class ParkingBoyTest {
         Ticket ticket = parkingBoy.parkCar(new Car());
         //then
         assertNotNull(ticket);
-        assertEquals(9, parkingLot1.getAvailablePosition());
-        assertEquals(10, parkingLot2.getAvailablePosition());
+        assertEquals(9, parkingLot1.getAvailablePositionCount());
+        assertEquals(10, parkingLot2.getAvailablePositionCount());
     }
     //Case 3
     @Test
@@ -53,8 +53,8 @@ public class ParkingBoyTest {
         Ticket ticket = parkingBoy.parkCar(new Car());
         //then
         assertNotNull(ticket);
-        assertEquals(0, parkingLot1.getAvailablePosition());
-        assertEquals(9, parkingLot2.getAvailablePosition());
+        assertEquals(0, parkingLot1.getAvailablePositionCount());
+        assertEquals(9, parkingLot2.getAvailablePositionCount());
     }
     //Case 4
     @Test
@@ -106,7 +106,7 @@ public class ParkingBoyTest {
     }
     //Case 6
     @Test
-    void should_throw_unrecognized_parking_ticket_when_take_car_given_parking_boy_manage_two_parking_lots_and_unused_ticket() {
+    void should_throw_unrecognized_parking_ticket_when_take_car_given_parking_boy_manage_two_parking_lots_and_used_ticket() {
         //given
         Car car = new Car();
         ParkingLot parkingLot1 = new ParkingLot(10);

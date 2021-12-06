@@ -12,7 +12,7 @@ public class SmartParkingBoy extends ParkingBoy {
     public Ticket parkCar(Car car) {
         ParkingLot availableParkingLot = getParkingLots().get(0);
         for (int i = 1; i < getParkingLots().size(); i++) {
-            if (availableParkingLot.getAvailablePosition() < getParkingLots().get(i).getAvailablePosition()) {
+            if (availableParkingLot.getAvailablePositionCount() < getParkingLots().get(i).getAvailablePositionCount()) {
                 availableParkingLot = getParkingLots().get(i);
             }
         }
